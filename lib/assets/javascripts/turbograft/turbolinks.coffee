@@ -75,7 +75,8 @@ class window.Turbolinks
     options.partialReplace ?= false
     options.onlyKeys ?= []
     options.onLoadFunction = ->
-      resetScrollPosition() unless options.onlyKeys.length
+      if !options.onlyKeys.length && !options.keepScrollPosition
+        resetScrollPosition()
       options.callback?()
 
     fetchReplacement url, options
